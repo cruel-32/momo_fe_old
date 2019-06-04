@@ -1,68 +1,119 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+# Easy Toether (가제)
 
-In the project directory, you can run:
+## 프로젝트 시작 전 의존성 설치 :
+###
+```
+    yarn
+```
 
-### `npm start`
+## 개발모드로 프로젝트 시작
+```
+    yarn start
+```
+[http://localhost:12354](http://localhost:12354)
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## 프로젝트 설정
+- vscode에서 확장 language-postcss을 설치<br/>
 
-### `npm test`
+```js
+    //settings.json
+    {
+        "files.associations": {
+            "*.css": "postcss"
+        }
+    }
+```
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# API 테스트
+## 먼저 나한테 IP주소 알려줘야 whitelist 등록해줌
+- https://easytogether.herokuapp.com 가 base url임. axios 설정해둘것.
 
-### `npm run build`
+- Account
+```js
+    //1.회원가입
+    //methods : POST
+    //url : /api/account/
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    {
+        "username" : /^[A-Za-z0-9가-힣\-_$]{2,12}$/, //required
+        "email" : /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i, //required
+        "password" : /^(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9])(?=.*[0-9]).{8,16}$/ //required
+    }
+```
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+```js
+    //2.로그인
+    //methods : POST
+    //url : /api/account/auth
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    {
+        "email" : /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i, //required
+        "password" : /^(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9])(?=.*[0-9]).{8,16}$/ //required
+    }
+```
 
-### `npm run eject`
+- Category (GET만 가능)
+```js
+    //1.모든 카테고리 목록 불러오기
+    //methods : POST
+    //url : /api/category
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```js
+    //2.특정 _id의 직속 하위 카테고리 목록 불러오기
+    //methods : POST
+    //url : /api/category/:_id (_id를 root로 입력시 최상위의 직속 하위 카테고리 목록을 불러옴 )
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Location (GET만 가능)
+```js
+    //1.모든 지역 목록 불러오기
+    //methods : POST
+    //url : /api/location
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```js
+    //2.특정 _id의 직속 하위 지역 목록 불러오기
+    //methods : POST
+    //url : /api/location/:_id (_id를 root로 입력시 최상위의 직속 하위 지역 목록을 불러옴 )
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- Meeting (연습용 API : CRUD가 모두 가능하고 마음대로 하셈)
+```js
+    //1.모든 모임 불러오기
+    //methods : GET
+    //url : /api/meeting 모든모임
+    //url : /api/meeting?[querystring] 쿼리스트링으로 구분해서 가져오기
+    //url : /api/meeting/:_id 특정모임
+```
 
-## Learn More
+```js
+    //2.모임 만들기
+    //methods : POST
+    //url : /api/meeting/
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+    {
+        "username" : "5~20자", //required
+        "categoryId" : '카테고리아이디'//required
+        "locationId" : '로케이션아이디'//required
+    }
+```
+```js
+    //3.모임 수정하기
+    //methods : PUT
+    //url : /api/meeting/:_id 모든 필드필요. 모든 필드를 다 교체한다.
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```js
+    //4.모임 부분수정하기
+    //methods : PATCH
+    //url : /api/meeting/:_id 일부 필드필요. 일부 필드를 다 교체한다.
+```
 
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+```js
+    //5.모임 삭제하기
+    //methods : DELETE
+    //url : /api/meeting/:_id 아이디로 삭제.
+```

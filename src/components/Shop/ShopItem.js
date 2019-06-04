@@ -1,4 +1,5 @@
 import React from 'react';
+import './ShopItem.scss';
 
 const ShopItem = ({ name, price, onPut }) => {
   return (

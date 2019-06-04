@@ -1,12 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import Home from './pages/home';
-import Counter from './pages/counter';
-import SuperMarket from './pages/super_market';
+import Home from 'pages/home';
+import Counter from 'pages/counter';
+import SuperMarket from 'pages/super_market';
 // import DevTools from 'mobx-react-devtools';
 // import logo from 'assets/logo.svg';
 
-import 'App.css';
+import './App.scss';
 
 function App() {
   return (

@@ -1,5 +1,6 @@
 import React from 'react';
 import { parse } from 'qs'
+import './SuperMarketTemplate.scss';
 
 const SuperMarketTemplate = ({ items, basket, total, match, location }) => {
   const queryObject = parse(location.search.substr(1));
