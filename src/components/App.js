@@ -8,9 +8,9 @@ import SuperMarket from 'pages/super_market';
 
 import './App.scss';
 
-function App() {
-  return (
-    <Router>
+class App extends React.Component {
+  render(){
+    return <Router>
       <div className="App">
         {/* <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
@@ -28,7 +28,6 @@ function App() {
         </div>
       </div>
     </Router>
-  );
+  }
 }
-
 export default App;

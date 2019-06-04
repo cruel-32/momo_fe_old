@@ -7634,6 +7634,12 @@ mobx-react-devtools@^6.1.1:
   version "6.1.1"
   resolved "https://registry.yarnpkg.com/mobx-react-devtools/-/mobx-react-devtools-6.1.1.tgz#a462b944085cf11ff96fc937d12bf31dab4c8984"
 
+mobx-react-form@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/mobx-react-form/-/mobx-react-form-2.0.2.tgz#5ac7771fd8d37e5127211f0a74f70f59bf9b2c03"
+  dependencies:
+    lodash "^4.17.11"
+
 mobx-react-lite@1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/mobx-react-lite/-/mobx-react-lite-1.4.0.tgz#193beb5fdddf17ae61542f65ff951d84db402351"
