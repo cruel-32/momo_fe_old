@@ -7,9 +7,7 @@
     "build": "cross-env NODE_ENV=production NODE_PATH=src node scripts/build.js",
     "test": "node scripts/test.js",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
-    "styleguide": "styleguidist server",
-    "styleguide:build": "styleguidist build"
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "@babel/core": "7.4.3",
@@ -64,7 +62,6 @@
     "react-dom": "^16.8.6",
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
-    "react-styleguidist": "^9.1.2",
     "resolve": "1.10.0",
     "sass-loader": "7.1.0",
     "semver": "6.0.0",
