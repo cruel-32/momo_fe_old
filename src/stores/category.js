@@ -1,17 +1,16 @@
 import { observable, action } from 'mobx';
-import axios from './axios';
+import {getCategories} from 'api/category';
 
 export default class CategoryStore {
-  @observable categories = []; // ****  기본 값 1로 업데이트
-
-  // **** 추가됨
+  @observable categories = [];
+  
   constructor(root) {
     this.root = root;
   }
 
   @action
-  getCategories = async (_id='root') => {
-    const {data} = await axios.get(`/api/category/${_id}`)
+  getCategories = async (parentId='') => {
+    const {data} = await getCategories(parentId);
     this.categories = data;
   };
 }

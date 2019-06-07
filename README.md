@@ -15,16 +15,7 @@
 
 
 ## 프로젝트 설정
-- vscode에서 확장 language-postcss을 설치<br/>
-
-```js
-    //settings.json
-    {
-        "files.associations": {
-            "*.css": "postcss"
-        }
-    }
-```
+- vscode에서 설정-> Experimental Decorators 검색해서 체크 (Annotation Syntax Error 방지)
 
 # API 테스트
 ## 먼저 나한테 IP주소 알려줘야 whitelist 등록해줌
