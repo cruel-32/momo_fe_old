@@ -84,15 +84,15 @@
 ```js
     //1.모든 모임 불러오기
     //methods : GET
-    //url : /api/meeting 모든모임
-    //url : /api/meeting?[querystring] 쿼리스트링으로 구분해서 가져오기
-    //url : /api/meeting/:_id 특정모임
+    //url : /api/event 모든모임
+    //url : /api/event?[querystring] 쿼리스트링으로 구분해서 가져오기
+    //url : /api/event/:_id 특정모임
 ```
 
 ```js
     //2.모임 만들기
     //methods : POST
-    //url : /api/meeting/
+    //url : /api/event/
 
     {
         "username" : "5~20자", //required
@@ -103,17 +103,17 @@
 ```js
     //3.모임 수정하기
     //methods : PUT
-    //url : /api/meeting/:_id 모든 필드필요. 모든 필드를 다 교체한다.
+    //url : /api/event/:_id 모든 필드필요. 모든 필드를 다 교체한다.
 ```
 
 ```js
     //4.모임 부분수정하기
     //methods : PATCH
-    //url : /api/meeting/:_id 일부 필드필요. 일부 필드를 다 교체한다.
+    //url : /api/event/:_id 일부 필드필요. 일부 필드를 다 교체한다.
 ```
 
 ```js
     //5.모임 삭제하기
     //methods : DELETE
-    //url : /api/meeting/:_id 아이디로 삭제.
+    //url : /api/event/:_id 아이디로 삭제.
 ```
