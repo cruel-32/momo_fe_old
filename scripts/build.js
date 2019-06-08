@@ -161,8 +161,8 @@ function build(previousFileSizes) {
       }
       if (
         process.env.CI &&
-        (typeof process.env.CI != 'string' ||
-          process.env.CI.toLowerCase() != 'false') &&
+        (typeof process.env.CI !== 'string' ||
+          process.env.CI.toLowerCase() !== 'false') &&
         messages.warnings.length
       ) {
         console.log(
@@ -186,6 +186,6 @@ function build(previousFileSizes) {
 function copyPublicFolder() {
   fs.copySync(paths.appPublic, paths.appBuild, {
     dereference: true,
-    filter: file => file != paths.appHtml,
+    filter: file => file !== paths.appHtml,
   });
 }
