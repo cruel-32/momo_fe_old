@@ -1,44 +1,6 @@
 @import 'import/mixin.scss';
 
-.App {
-  @include mq(xs){
-    width:getSize(xs);
-    a {
-      color:$textBold
-    }
-  }
-  @include mq(sm){
-    width:getSize(sm);
-    a {
-      color:$text-hover
-    }
-  }
-  @include mq(md){
-    width:getSize(md);
-    a {
-      color:$text-hover
-    }
-  }
-  @include mq(lg){
-    width:getSize(lg);
-    a {
-      color:$text
-    }
-  }
-  @include mq(xl){
-    width:getSize(xl);
-    a {
-      color:$title
-    }
-  }
-  @include mq(xxl){
-    width:getSize(xxl);
-    a {
-      color:$primary
-    }
-  }
-}
-
 button {
+  background:#ccc;
   color:$textBold;
 }

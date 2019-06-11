@@ -7,10 +7,6 @@ import {
   patchMeeting,
 } from 'api/meeting';
 
-console.log("getMeetings : ", getMeetings);
-console.log("postMeeting : ", postMeeting);
-console.log("getMeeting : ", getMeeting);
-
 export default class CategoryStore {
   @observable meetings = [];
   @observable meeting = null;

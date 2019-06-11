@@ -16,6 +16,10 @@ code {
 }
 
 .App {
+  a {
+    display:inline-block;
+    margin-right:10px;
+  }
   @include mq(xs){
     width:getSize(xs);
     a {
