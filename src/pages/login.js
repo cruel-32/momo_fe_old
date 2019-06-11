@@ -10,7 +10,7 @@ class Login extends Component {
         super(props);
         this.state = {
             email : "cshee8508@gmail.com",
-            password : "854120202qq!"
+            password : "1q2w3e4r!@"
         }
 
     }
@@ -26,8 +26,8 @@ class Login extends Component {
         return (
             <div>
                 <form method="POST" onSubmit={this.login}>
-                    <input type="text" name="email" defaultValue={email}/>
-                    <input type="text" name="password" defaultValue={password}/>
+                    <input type="text" defaultValue={email}/>
+                    <input type="password" defaultValue={password}/>
                     <button type="submit">login</button>
                 </form>
             </div>
