@@ -17,7 +17,7 @@
 ## 프로젝트 설정
 - vscode에서 설정-> Experimental Decorators 검색해서 체크 (Annotation Syntax Error 방지)
 
-# API 테스트
+# API 테스트 (rest)
 ## 먼저 나한테 IP주소 알려줘야 whitelist 등록해줌
 - https://easytogether.herokuapp.com 가 base url임. axios 설정해둘것.
 
