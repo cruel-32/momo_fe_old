@@ -14,16 +14,16 @@ export default class CategoryStore {
   
   @action
   login = async (params={}) => {
-    const result = await login(params);
-    console.log('result : ', result);
-    const {data} = result;
+    const {data} = await login(params);
     this.account = data;
   };
 
   @action
   logout = async (params={}) => {
-    const {data} = await logout(params);
-    this.account = data;
+    // const {data} = await logout(params);
+    // this.account = data;
+    localStorage.removeItem('access_token');
+    this.account = null;
   };
 
 }

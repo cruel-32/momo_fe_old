@@ -9,7 +9,7 @@
 
 ## 개발모드로 프로젝트 시작
 ```
-    yarn start
+    yarn dev
 ```
 [http://localhost:12354](http://localhost:12354)
 

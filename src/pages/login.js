@@ -10,12 +10,18 @@ class Login extends Component {
         super(props);
         this.state = {
             email : "cshee8508@gmail.com",
-            password : "1q2w3e4r!@"
+            password : ""
         }
-
     }
 
-    login = (e) =>{
+    handleChange = e => {
+        this.setState({
+            ...this.state,
+            [e.target.name]: e.target.value
+        });
+    }
+
+    login = e =>{
         e.preventDefault();
         const { account } = this.props;
         account.login(this.state);
@@ -26,8 +32,8 @@ class Login extends Component {
         return (
             <div>
                 <form method="POST" onSubmit={this.login}>
-                    <input type="text" defaultValue={email}/>
-                    <input type="password" defaultValue={password}/>
+                    <input type="text" name="email" defaultValue={email} onChange={this.handleChange}/>
+                    <input type="password" name="password" defaultValue={password} onChange={this.handleChange}/>
                     <button type="submit">login</button>
                 </form>
             </div>
