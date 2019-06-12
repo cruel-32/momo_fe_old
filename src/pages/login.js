@@ -26,6 +26,11 @@ class Login extends Component {
         const { account } = this.props;
         account.login(this.state);
     }
+    logout = e =>{
+        e.preventDefault();
+        const { account } = this.props;
+        account.logout();
+    }
 
     render() {
         const { email,password } = this.state;
@@ -36,6 +41,7 @@ class Login extends Component {
                     <input type="password" name="password" defaultValue={password} onChange={this.handleChange}/>
                     <button type="submit">login</button>
                 </form>
+                <button type="button" onClick={this.logout}>logout</button>
             </div>
         );
     }

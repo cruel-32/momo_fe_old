@@ -3,7 +3,6 @@ axios.defaults.baseURL = 'http://localhost:12354';
 // axios.defaults.baseURL = 'https://easytogether.herokuapp.com';
 axios.defaults.headers['content-type'] = 'application/json';
 
-
 axios.interceptors.request.use(config=> {
     let access_token = localStorage.getItem('access_token') || sessionStorage.getItem('access_token');
     config.headers['access_token'] = access_token ? JSON.parse(access_token) : '';

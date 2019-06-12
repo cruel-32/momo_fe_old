@@ -1,7 +1,6 @@
 import { observable, action } from 'mobx';
 import {
   login,
-  logout,
 } from 'api/account';
 
 
