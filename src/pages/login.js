@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 
 @inject(stores => ({
     account: stores.account,
@@ -37,11 +39,21 @@ class Login extends Component {
         return (
             <div>
                 <form method="POST" onSubmit={this.login}>
-                    <input type="text" name="email" defaultValue={email} onChange={this.handleChange}/>
-                    <input type="password" name="password" defaultValue={password} onChange={this.handleChange}/>
-                    <button type="submit">login</button>
+                    <TextField
+                        type="email"
+                        label="Name"
+                        defaultValue={email}
+                        onChange={this.handleChange}
+                    />
+                    <TextField
+                        type="password"
+                        label="Password"
+                        defaultValue={password}
+                        onChange={this.handleChange}
+                    />
+                    <Button type="submit" variant="outlined" color="primary">Login</Button>
                 </form>
-                <button type="button" onClick={this.logout}>logout</button>
+                <Button type="submit" variant="outlined" color="primary" onClick={this.logout}>logout</Button>
             </div>
         );
     }
