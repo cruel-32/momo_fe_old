@@ -12,13 +12,13 @@ class Login extends Component {
         super(props);
         this.state = {
             email : "cshee8508@gmail.com",
-            password : ""
+            password : "",
+            switch:false,
         }
     }
 
     handleChange = e => {
         this.setState({
-            ...this.state,
             [e.target.name]: e.target.value
         });
     }
@@ -34,10 +34,22 @@ class Login extends Component {
         account.logout();
     }
 
+    switch(){
+        console.log('this.switch');
+        this.setState({
+            switch:!this.state.switch
+        })
+    }
+    log(){
+        console.log('this.state : ', this.state);
+    }
+
     render() {
         const { email,password } = this.state;
         return (
             <div>
+                <button onClick={()=>{this.switch()}}>switch</button>
+                <button onClick={()=>{this.log()}}>log</button>
                 <form method="POST" onSubmit={this.login}>
                     <TextField
                         type="email"
