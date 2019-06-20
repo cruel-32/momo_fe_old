@@ -21,6 +21,9 @@
 ## 먼저 나한테 IP주소 알려줘야 whitelist 등록해줌
 - https://easytogether.herokuapp.com 가 base url임. axios 설정해둘것.
 
+
+## 하단 api 경로 전체 수정중. 참고용으로만 쓰고 사용하지 마시오!
+
 - Account
 ```js
     //1.회원가입
