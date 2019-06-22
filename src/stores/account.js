@@ -1,7 +1,7 @@
 import { observable, action } from 'mobx';
 import {login,} from 'api/account';
 import Validator from 'validatorjs'
-import {match,message} from 'lib/rules'
+import {rules,message} from 'lib/rules'
 
 export default class CategoryStore {
   constructor(root) {
@@ -12,30 +12,19 @@ export default class CategoryStore {
     email: '',
     password: '',
     passwordConfirm: '',
+    username: '',
   }
   @observable formErrors =  {
     email: '',
     password: '',
     passwordConfirm: '',
+    username: '',
   }
   @observable meta = {
     isValid: true,
     error: null,
   }
 
-  validation = {
-    'email': ['required', `regex:${match.email}`],
-    'password': ['required', `regex:${match.password}`],
-    'passwordConfirm':  ['required', `same:password`],
-  }
-
-  messages = {
-    "required" : message.required,
-    "regex.email" : message.email,
-    "regex.password" : message.password,
-    "same.passwordConfirm" : message.passwordConfirm,
-  }
-  
   @action
   login = async (params={}) => {
     const {data} = await login(params);
@@ -51,29 +40,46 @@ export default class CategoryStore {
   };
 
   @action
-  onValueChange = (e) => {
+  onValueChange = e => {
     const {name, value} = e.target;
     this.formValues[name] = value;
     const validation = new Validator(
       this.formValues,
-      this.validation,
-      this.messages
+      rules.accountRules,
+      message,
     )
     this.meta.isValid = validation.passes();
     this.formErrors[name] = validation.errors.first(name)
   };
 
   @action
-  onSubmitForm = (e) => {
+  loginSubmitForm = e => {
     e.preventDefault();
+    const {email,password} = rules.accountRules;
     const validation = new Validator(
-      this.formValues,
-      this.validation,
-      this.messages
+      {
+        email: this.formValues.email,
+        password: this.formValues.password,
+      },
+      {email,password},
+      message,
     )
     console.log('onSubmitForm validation : ', validation);
     if(validation.passes()){
       console.log('login gogo');
+    }
+  };
+  joinSubmitForm = e => {
+    e.preventDefault();
+    const {email,username,password,passwordConfirm} = rules.accountRules;
+    const validation = new Validator(
+      this.formValues,
+      {email,username,password,passwordConfirm},
+      message,
+    )
+    console.log('onSubmitForm validation : ', validation);
+    if(validation.passes()){
+      console.log('join gogo');
     }
   };
 }

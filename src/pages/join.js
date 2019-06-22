@@ -7,14 +7,23 @@ import Button from '@material-ui/core/Button';
     account: stores.account,
 }))
 @observer
-class Login extends Component {
+class Join extends Component {
     render() {
-        const {formValues,formErrors,onValueChange,meta,loginSubmitForm} = this.props.account;
+        const {formValues,formErrors,onValueChange,meta,joinSubmitForm} = this.props.account;
         // console.log('form.meta.error : ', form.meta.error);
         // onSubmit={form.onSubmit}
         return (
             <div>
-                <form method="POST" onSubmit={loginSubmitForm}>
+                <form method="POST" onSubmit={joinSubmitForm}>
+                    <TextField
+                        type="username"
+                        name="username"
+                        label="username"
+                        required
+                        value={formValues.username}
+                        onChange={onValueChange}
+                        placeholder="username"
+                    />
                     <TextField
                         type="email"
                         name="email"
@@ -35,15 +44,23 @@ class Login extends Component {
                         onChange={onValueChange}
                     />
                     <div>password error : {formErrors.password}</div>
+                    
+                    <TextField
+                        type="password"
+                        name="passwordConfirm"
+                        label="passwordConfirm"
+                        required
+                        value={formValues.passwordConfirm}
+                        placeholder="password confirm"
+                        onChange={onValueChange}
+                    />
+                    <div>passwordConfirm error : {formErrors.passwordConfirm}</div>
 
-                    <Button type="submit" variant="outlined" color="primary">Login</Button>
-
+                    <Button type="submit" variant="outlined" color="primary">Join</Button>
                     <div>meta.error {meta.error}</div>
-
                 </form>
-                <Button type="submit" variant="outlined" color="primary" onClick={this.logout}>logout</Button>
             </div>
         );
     }
 }
-export default Login;
+export default Join;

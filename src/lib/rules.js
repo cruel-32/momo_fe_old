@@ -7,9 +7,18 @@ export const match = {
 
 export const message = {
     'required' : "필수입력항목 입니다",
-    'email' : '이메일 제대로 써라 좀',
-    'username': '닉넴 제대로 써라 좀',
-    'password': '비번 제대로 써라 좀',
-    'name':'이름 제대로 써라 좀',
-    'passwordConfirm' : '비밀번호가 서로 다릅니다.',
+    'regex.email' : '이메일 제대로 써라 좀',
+    'regex.username': '한글,영문,숫자 조합 2~12자를 입력하세요',
+    'regex.password': '특수문자,숫자,알파벳을 포함한 8~16자를 입력하세요',
+    'same.passwordConfirm' : '비밀번호가 서로 다릅니다.',
+    'name':'실명',
+}
+
+export const rules = {
+    accountRules : {
+        'email': ['required', `regex:${match.email}`],
+        'username': ['required', `regex:${match.username}`],
+        'password': ['required', `regex:${match.password}`],
+        'passwordConfirm':  ['required', `same:password`],
+    },
 }
