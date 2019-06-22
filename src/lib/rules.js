@@ -10,7 +10,6 @@ export const message = {
     'email' : '이메일 제대로 써라 좀',
     'username': '닉넴 제대로 써라 좀',
     'password': '비번 제대로 써라 좀',
-    'passwordConfirm': '비번 제대로 써라 좀',
     'name':'이름 제대로 써라 좀',
     'passwordConfirm' : '비밀번호가 서로 다릅니다.',
 }
