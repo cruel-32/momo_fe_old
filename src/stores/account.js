@@ -7,29 +7,35 @@ export default class CategoryStore {
   constructor(root) {
     this.root = root;
   }
-
   @observable account = null;
-  @observable form =  {
-    fields: {
-      email: {
-        value: '',
-        error: null,
-      },
-      password: {
-        value: '',
-        error: null,
-      },
-      passwordConfirm: {
-        value: '',
-        error: null,
-      },
-    },
-    meta: {
-      isValid: true,
-      error: null,
-    }
+  @observable formValues =  {
+    email: '',
+    password: '',
+    passwordConfirm: '',
+  }
+  @observable formErrors =  {
+    email: '',
+    password: '',
+    passwordConfirm: '',
+  }
+  @observable meta = {
+    isValid: true,
+    error: null,
   }
 
+  validation = {
+    'email': ['required', `regex:${match.email}`],
+    'password': ['required', `regex:${match.password}`],
+    'passwordConfirm':  ['required', `same:password`],
+  }
+
+  messages = {
+    "required" : message.required,
+    "regex.email" : message.email,
+    "regex.password" : message.password,
+    "same.passwordConfirm" : message.passwordConfirm,
+  }
+  
   @action
   login = async (params={}) => {
     const {data} = await login(params);
@@ -47,33 +53,27 @@ export default class CategoryStore {
   @action
   onValueChange = (e) => {
     const {name, value} = e.target;
-    this.form.fields[name].value = value;
-    let {email, password, passwordConfirm} = this.form.fields
-    let validation = new Validator(
-      {
-        'email': email.value,
-        'password': password.value,
-        'passwordConfirm': passwordConfirm.value
-      },
-      {
-        'email': ['required', `regex:${match.email}`],
-        'password': ['required', `regex:${match.password}`],
-        'passwordConfirm':  ['required', `same:password`],
-      },
-      {
-        "required" : message.required,
-        "regex.email" : message.email,
-        "regex.password" : message.password,
-        "same.passwordConfirm" : message.passwordConfirm,
-      }
+    this.formValues[name] = value;
+    const validation = new Validator(
+      this.formValues,
+      this.validation,
+      this.messages
     )
-    this.form.meta.isValid = validation.passes();
-    this.form.fields[name].error = validation.errors.first(name)
+    this.meta.isValid = validation.passes();
+    this.formErrors[name] = validation.errors.first(name)
   };
 
   @action
   onSubmitForm = (e) => {
-    
+    e.preventDefault();
+    const validation = new Validator(
+      this.formValues,
+      this.validation,
+      this.messages
+    )
+    console.log('onSubmitForm validation : ', validation);
+    if(validation.passes()){
+      console.log('login gogo');
+    }
   };
-
 }

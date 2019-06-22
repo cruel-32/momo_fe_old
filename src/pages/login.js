@@ -8,52 +8,47 @@ import Button from '@material-ui/core/Button';
 }))
 @observer
 class Login extends Component {
-    constructor(props){
-        super(props);
-        console.log('this.props.account : ', this.props.account);
-
-    }
     render() {
-        const {form, onValueChange} = this.props.account;
+        const {formValues,formErrors,onValueChange,meta,onSubmitForm} = this.props.account;
         // console.log('form.meta.error : ', form.meta.error);
-
+        // onSubmit={form.onSubmit}
         return (
             <div>
-                <form method="POST" onSubmit={form.onSubmit}>
+                <form method="POST" onSubmit={onSubmitForm}>
                     <TextField
                         type="email"
                         name="email"
                         label="email"
                         required
-                        value={form.fields.email.value}
+                        value={formValues.email}
                         onChange={onValueChange}
                         placeholder="email"
                     />
-                    <div>email error : {form.fields.email.error}</div>
+                    <div>email error : {formErrors.email}</div>
                     <TextField
                         type="password"
                         name="password"
                         label="password"
                         required
-                        value={form.fields.password.value}
+                        value={formValues.password}
                         placeholder="password"
                         onChange={onValueChange}
                     />
-                    <div>password error : {form.fields.password.error}</div>
+                    <div>password error : {formErrors.password}</div>
                     <TextField
                         type="password"
                         name="passwordConfirm"
                         label="passwordConfirm"
                         required
-                        value={form.fields.passwordConfirm.value}
+                        value={formValues.passwordConfirm}
                         placeholder="password confirm"
                         onChange={onValueChange}
                     />
-                    <div>password confirm error : {form.fields.passwordConfirm.error}</div>
+                    <div>password confirm error : {formErrors.passwordConfirm}</div>
 
                     <Button type="submit" variant="outlined" color="primary">Login</Button>
 
-                    <div>form.meta.error {form.meta.error && form.meta.error }</div>
+                    <div>meta.error {meta.error}</div>
 
                 </form>
                 <Button type="submit" variant="outlined" color="primary" onClick={this.logout}>logout</Button>
