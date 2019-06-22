@@ -10,65 +10,55 @@ import Button from '@material-ui/core/Button';
 class Login extends Component {
     constructor(props){
         super(props);
-        this.state = {
-            email : "cshee8508@gmail.com",
-            password : "",
-            switch:false,
-        }
-    }
+        console.log('this.props.account : ', this.props.account);
 
-    handleChange = e => {
-        this.setState({
-            [e.target.name]: e.target.value
-        });
     }
-
-    login = e =>{
-        e.preventDefault();
-        const { account } = this.props;
-        account.login(this.state);
-    }
-    logout = e =>{
-        e.preventDefault();
-        const { account } = this.props;
-        account.logout();
-    }
-
-    switch(){
-        console.log('this.switch');
-        this.setState({
-            switch:!this.state.switch
-        })
-    }
-    log(){
-        console.log('this.state : ', this.state);
-    }
-
     render() {
-        const { email,password } = this.state;
+        const {form, onValueChange} = this.props.account;
+        // console.log('form.meta.error : ', form.meta.error);
+
         return (
             <div>
-                <button onClick={()=>{this.switch()}}>switch</button>
-                <button onClick={()=>{this.log()}}>log</button>
-                <form method="POST" onSubmit={this.login}>
+                <form method="POST" onSubmit={form.onSubmit}>
                     <TextField
                         type="email"
-                        label="Name"
-                        defaultValue={email}
-                        onChange={this.handleChange}
+                        name="email"
+                        label="email"
+                        required
+                        value={form.fields.email.value}
+                        onChange={onValueChange}
+                        placeholder="email"
                     />
+                    <div>email error : {form.fields.email.error}</div>
                     <TextField
                         type="password"
-                        label="Password"
-                        defaultValue={password}
-                        onChange={this.handleChange}
+                        name="password"
+                        label="password"
+                        required
+                        value={form.fields.password.value}
+                        placeholder="password"
+                        onChange={onValueChange}
                     />
+                    <div>password error : {form.fields.password.error}</div>
+                    <TextField
+                        type="password"
+                        name="passwordConfirm"
+                        label="passwordConfirm"
+                        required
+                        value={form.fields.passwordConfirm.value}
+                        placeholder="password confirm"
+                        onChange={onValueChange}
+                    />
+                    <div>password confirm error : {form.fields.passwordConfirm.error}</div>
+
                     <Button type="submit" variant="outlined" color="primary">Login</Button>
+
+                    <div>form.meta.error {form.meta.error && form.meta.error }</div>
+
                 </form>
                 <Button type="submit" variant="outlined" color="primary" onClick={this.logout}>logout</Button>
             </div>
         );
     }
 }
-
 export default Login;
