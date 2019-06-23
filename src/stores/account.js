@@ -3,7 +3,7 @@ import {login,} from 'api/account';
 import Validator from 'validatorjs'
 import {rules,message} from 'lib/rules'
 
-export default class CategoryStore {
+export default class AccountStore {
   constructor(root) {
     this.root = root;
   }
