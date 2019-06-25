@@ -50,6 +50,7 @@ export default class AccountStore {
 
   @action
   onValueChange = e => {
+    // console.log('onValueChange : ', e.target);
     const {name, value} = e.target;
     this.formValues[name] = value;
     const validation = new Validator(
