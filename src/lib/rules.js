@@ -20,5 +20,11 @@ export const rules = {
         'username': ['required', `regex:${match.username}`],
         'password': ['required', `regex:${match.password}`],
         'passwordConfirm':  ['required', `same:password`],
+        'birth' : ['date'],
+        'thumbnail' : ['string'],
+        'name' : [`regex:${match.name}`], 
+        'phone' : ['numeric'], 
+        'message' : ['max:20'],
     },
 }
+

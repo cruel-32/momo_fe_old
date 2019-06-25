@@ -1,5 +1,5 @@
 import { observable, action } from 'mobx';
-import {login,} from 'api/account';
+import {login,join} from 'api/account';
 import Validator from 'validatorjs'
 import {rules,message} from 'lib/rules'
 
@@ -7,18 +7,14 @@ export default class AccountStore {
   constructor(root) {
     this.root = root;
   }
-  @observable account = null;
+  @observable account = localStorage.getItem('account') ? JSON.parse(localStorage.getItem('account')) : null;
   @observable formValues =  {
-    email: '',
-    password: '',
-    passwordConfirm: '',
-    username: '',
+    email: '', password: '', passwordConfirm: '', username: '',
+    birth : '', thumbnail : '', name : '', phone : '', message : '',
   }
   @observable formErrors =  {
-    email: '',
-    password: '',
-    passwordConfirm: '',
-    username: '',
+    email: '', password: '', passwordConfirm: '', username: '',
+    birth : '', thumbnail : '', name : '', phone : '', message : '',
   }
   @observable meta = {
     isValid: true,
@@ -28,15 +24,28 @@ export default class AccountStore {
   @action
   login = async (params={}) => {
     const {data} = await login(params);
-    this.account = data;
+    if(data){
+      this.account = data;
+      localStorage.setItem('account', JSON.stringify(this.account));
+    }
   };
 
   @action
-  logout = async (params={}) => {
+  logout = async () => {
     // const {data} = await logout(params);
     // this.account = data;
-    localStorage.removeItem('access_token');
+    console.log('logout gogo');
     this.account = null;
+    localStorage.removeItem('account')
+  };
+
+  @action
+  join = async (params={}) => {
+    const {data} = await join(params);
+    if(data){
+      this.account = data;
+      localStorage.setItem('account', JSON.stringify(this.account));
+    }
   };
 
   @action
@@ -44,8 +53,8 @@ export default class AccountStore {
     const {name, value} = e.target;
     this.formValues[name] = value;
     const validation = new Validator(
-      this.formValues,
-      rules.accountRules,
+      {[name] : this.formValues[name]},
+      {[name] : rules.accountRules[name]},
       message,
     )
     this.meta.isValid = validation.passes();
@@ -55,31 +64,55 @@ export default class AccountStore {
   @action
   loginSubmitForm = e => {
     e.preventDefault();
-    const {email,password} = rules.accountRules;
+    const {email,password} = this.formValues;
     const validation = new Validator(
       {
-        email: this.formValues.email,
-        password: this.formValues.password,
+        email,
+        password,
       },
-      {email,password},
+      {
+        email : rules.accountRules.email,
+        password : rules.accountRules.password,
+      },
       message,
     )
     console.log('onSubmitForm validation : ', validation);
     if(validation.passes()){
       console.log('login gogo');
+      this.login({
+        email,
+        password,
+      })
     }
   };
+
+  @action
   joinSubmitForm = e => {
     e.preventDefault();
-    const {email,username,password,passwordConfirm} = rules.accountRules;
+    const {email,username,password,passwordConfirm} = this.formValues;
     const validation = new Validator(
-      this.formValues,
-      {email,username,password,passwordConfirm},
+      {
+        email,
+        username,
+        password,
+        passwordConfirm,
+      },
+      {
+        email : rules.accountRules.email,
+        username : rules.accountRules.username,
+        password : rules.accountRules.password,
+        passwordConfirm : rules.accountRules.passwordConfirm,
+      },
       message,
     )
     console.log('onSubmitForm validation : ', validation);
     if(validation.passes()){
       console.log('join gogo');
+      this.join({
+        email,
+        username,
+        password,
+      })
     }
   };
 }
