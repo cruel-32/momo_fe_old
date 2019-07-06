@@ -28,7 +28,7 @@
 ```js
     //1.회원가입
     //methods : POST
-    //url : /api/account/
+    //url : /api/accounts/
 
     {
         "username" : /^[A-Za-z0-9가-힣\-_$]{2,12}$/, //required
@@ -40,7 +40,7 @@
 ```js
     //2.로그인
     //methods : POST
-    //url : /api/account/auth
+    //url : /api/accounts/auth
 
     {
         "email" : /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i, //required
@@ -52,13 +52,13 @@
 ```js
     //1.모든 카테고리 목록 불러오기
     //methods : POST
-    //url : /api/category
+    //url : /api/categories
 ```
 
 ```js
     //2.특정 _id의 직속 하위 카테고리 목록 불러오기
     //methods : POST
-    //url : /api/category/:_id (_id를 root로 입력시 최상위의 직속 하위 카테고리 목록을 불러옴 )
+    //url : /api/categories/:_id (_id를 root로 입력시 최상위의 직속 하위 카테고리 목록을 불러옴 )
 ```
 
 - Location (GET만 가능)
@@ -78,15 +78,15 @@
 ```js
     //1.모든 모임 불러오기
     //methods : GET
-    //url : /api/event 모든모임
-    //url : /api/event?[querystring] 쿼리스트링으로 구분해서 가져오기
-    //url : /api/event/:_id 특정모임
+    //url : /api/events 모든모임
+    //url : /api/events?[querystring] 쿼리스트링으로 구분해서 가져오기
+    //url : /api/events/:_id 특정모임
 ```
 
 ```js
     //2.모임 만들기
     //methods : POST
-    //url : /api/event/
+    //url : /api/events/
 
     {
         "username" : "5~20자", //required
@@ -97,17 +97,17 @@
 ```js
     //3.모임 수정하기
     //methods : PUT
-    //url : /api/event/:_id 모든 필드필요. 모든 필드를 다 교체한다.
+    //url : /api/events/:_id 모든 필드필요. 모든 필드를 다 교체한다.
 ```
 
 ```js
     //4.모임 부분수정하기
     //methods : PATCH
-    //url : /api/event/:_id 일부 필드필요. 일부 필드를 다 교체한다.
+    //url : /api/events/:_id 일부 필드필요. 일부 필드를 다 교체한다.
 ```
 
 ```js
     //5.모임 삭제하기
     //methods : DELETE
-    //url : /api/event/:_id 아이디로 삭제.
+    //url : /api/events/:_id 아이디로 삭제.
 ```
