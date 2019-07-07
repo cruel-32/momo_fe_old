@@ -1,6 +1,6 @@
 import * as axios from 'axios';
 axios.defaults.baseURL = 'http://localhost:12354';
-// axios.defaults.baseURL = 'https://easytogether.herokuapp.com';
+// axios.defaults.baseURL = 'https://momoapps.herokuapp.com';
 axios.defaults.headers['content-type'] = 'application/json';
 
 axios.interceptors.request.use(config=> {
