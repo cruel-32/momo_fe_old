@@ -23,6 +23,7 @@
 
 
 ## 하단 api 경로 전체 수정중. 참고용으로만 쓰고 사용하지 마시오!
+## https://github.com/cruel-32/momo_be/tree/master/src/test/api 가 진짜 api
 
 - Account
 ```js
