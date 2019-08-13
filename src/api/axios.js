@@ -2,6 +2,7 @@ import * as axios from 'axios';
 axios.defaults.baseURL = 'http://localhost:12354';
 // axios.defaults.baseURL = 'https://momoapps.herokuapp.com';
 axios.defaults.headers['content-type'] = 'application/json';
+axios.defaults.withCredentials = true;
 
 axios.interceptors.request.use(config=> {
     let account = localStorage.getItem('account') || sessionStorage.getItem('account');
