@@ -1,5 +1,5 @@
 import { observable, action } from 'mobx';
-import {login,join} from 'api/account';
+import {login, logout, join} from 'api/account';
 import Validator from 'validatorjs'
 import {rules,message} from 'lib/rules'
 
@@ -9,7 +9,7 @@ export default class AccountStore {
   }
   @observable account = localStorage.getItem('account') ? JSON.parse(localStorage.getItem('account')) : null;
   @observable formValues =  {
-    email: '', password: '', passwordConfirm: '', username: '',
+    email: 'tester1@gmail.com', password: '1q2w3e4r!@', passwordConfirm: '', username: '',
     birth : '', thumbnail : '', name : '', phone : '', message : '',
   }
   @observable formErrors =  {
@@ -32,10 +32,9 @@ export default class AccountStore {
 
   @action
   logout = async () => {
-    // const {data} = await logout(params);
-    // this.account = data;
+    const {data} = await logout();
+    this.account = data;
     console.log('logout gogo');
-    this.account = null;
     localStorage.removeItem('account')
   };
 
