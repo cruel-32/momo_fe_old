@@ -1,5 +1,5 @@
 import { observable, action } from 'mobx';
-import {login, logout, join} from 'api/account';
+import {login, logout, join, createEvent, deleteEvent} from 'api/account';
 import Validator from 'validatorjs'
 import {rules,message} from 'lib/rules'
 
@@ -115,4 +115,17 @@ export default class AccountStore {
       })
     }
   };
+
+  @action
+  createEvent = async params => {
+    const {data} = await createEvent(params);
+    console.log('data : ', data);
+  }
+
+  @action
+  deleteEvent = async params => {
+    const {data} = await deleteEvent(params);
+    console.log('data : ', data);
+  }
+
 }

@@ -8,6 +8,24 @@ import Button from '@material-ui/core/Button';
 }))
 @observer
 class Login extends Component {
+    createEvent(){
+        const {createEvent} =  this.props.account;
+        createEvent({
+            "title" : "오늘 노가리 벙입니다",
+            "categoryCode" : "5d2190b40b1d6d4cac321b7b",
+            "locationCode" : "5cf38a4294371522a4c10144",
+            "message" : "노가리 까러오세요~",
+            "date": new Date(),
+            "togetherId": "5d21900d0b1d6d4cac321b79",
+            "limit": 10
+        })
+    }
+    deleteEvent(){
+        const {deleteEvent} =  this.props.account;
+        deleteEvent({
+            title : `테스터 ${(Math.random()*10).toFixed(0)}의 모임입니다`,
+        })
+    }
     render() {
         const {account,formValues,formErrors,onValueChange,meta,loginSubmitForm,logout} = this.props.account;
         return (
@@ -46,6 +64,11 @@ class Login extends Component {
                         <Button  type="submit" variant="outlined" color="primary" onClick={logout}>logout</Button>
                     </div>
                 }
+
+
+                <Button  type="submit" variant="outlined" color="primary" onClick={(e)=>{this.createEvent(e)}}>createEvent</Button>
+                <Button  type="submit" variant="outlined" color="primary" onClick={(e)=>{this.deleteEvent(e)}}>deleteEvent</Button>
+
             </div>
         );
     }
