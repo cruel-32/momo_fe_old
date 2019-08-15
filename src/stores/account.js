@@ -20,6 +20,7 @@ export default class AccountStore {
     isValid: true,
     error: null,
   }
+  @observable key = '';
 
   @action
   login = async (params={}) => {
@@ -120,11 +121,12 @@ export default class AccountStore {
   createEvent = async params => {
     const {data} = await createEvent(params);
     console.log('data : ', data);
+    this.key = data._id;
   }
 
   @action
   deleteEvent = async params => {
-    const {data} = await deleteEvent(params);
+    const {data} = await deleteEvent(this.key);
     console.log('data : ', data);
   }
 
