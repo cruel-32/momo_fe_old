@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Home from 'pages/home';
-import Meeting from 'pages/meeting';
+import Event from 'pages/event';
 import Login from 'pages/login';
 import Join from 'pages/join';
 import 'styles/App.scss';
@@ -17,12 +17,12 @@ class App extends React.Component {
           <Link to={`/`}>Home</Link>
           <Link to={`/login`}>Login</Link>
           <Link to={`/join`}>Join</Link>
-          <Link to={`/meeting/2000?count=10`}>Meeting</Link>
+          <Link to={`/event/2000?count=10`}>Event</Link>
 
           <Route exact path="/" component={Home}/>
           <Route exact path="/login" component={Login} />
           <Route exact path="/join" component={Join} />
-          <Route path={["/meeting/:id", "/meeting"]} component={Meeting} />
+          <Route path={["/event/:id", "/event"]} component={Event} />
 
         </div>
       </div>

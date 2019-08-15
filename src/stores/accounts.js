@@ -1,5 +1,5 @@
 import { observable, action } from 'mobx';
-import {login, logout, join, createEvent, deleteEvent} from 'api/account';
+import {login, logout, join} from 'api/account';
 import Validator from 'validatorjs'
 import {rules,message} from 'lib/rules'
 
@@ -34,8 +34,8 @@ export default class AccountStore {
   @action
   logout = async () => {
     const {data} = await logout();
-    this.account = data;
-    console.log('logout gogo');
+    this.account = null;
+    console.log('logout gogo : ', data);
     localStorage.removeItem('account')
   };
 
@@ -116,18 +116,5 @@ export default class AccountStore {
       })
     }
   };
-
-  @action
-  createEvent = async params => {
-    const {data} = await createEvent(params);
-    console.log('data : ', data);
-    this.key = data._id;
-  }
-
-  @action
-  deleteEvent = async params => {
-    const {data} = await deleteEvent(this.key);
-    console.log('data : ', data);
-  }
 
 }

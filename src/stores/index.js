@@ -1,12 +1,12 @@
-import CategoryStore from './category';
-import MeetingStore from './meeting';
-import AccountStore from './account';
+import CategoryStore from './categories';
+import EventStore from './events';
+import AccountStore from './accounts';
 
 class RootStore {
   constructor() {
-    this.category = new CategoryStore(this);
-    this.meeting = new MeetingStore(this);
-    this.account = new AccountStore(this);
+    this.categories = new CategoryStore(this);
+    this.events = new EventStore(this);
+    this.accounts = new AccountStore(this);
   }
 }
 
